@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="container">  <!-- mejora el espaciado de la pagina-->
+    <form action=""> <!-- especifica que al hacer clic en enviar, enviamos el formulario a la misma página-->
+        <div class="mb-3"> <!--agrega espacio inferior de 3 unidades-->
+            <label for="movieDescription" class="form-label mt-3 d-block text-center fs-4 fw-bold"> <!--asocia un texto descriptivo con un campo de entrada en un formulario-->
+                Get a recommendation by a movie description:
+            </label>
+            <input type="text" class="form-control" name="movieDescription"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>   
+    <p>Searching for: {{searchTerm}}</p> 
+    {%if recommendedMovie %}    
+    <div class="row justify-content-center"> 
+        <div class="col-md-4">  <!-- el ancho de la card -->
+          <div class="card">
+            <img src="{{ recommendedMovie.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold">{{ recommendedMovie.title }}</h5>
+              <p class="card-text">{{ recommendedMovie.description }}</p>
+              <p class="card-text">{{ recommendedMovie.genre }}</p>
+              <p class="card-text">{{ recommendedMovie.year }}</p>
+              {% if recommendedMovie.url %}
+                <a href="{{ recommendedMovie.url }}" class="btn btn-primary">Movie Link</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+    {% else %}
+        <p class= "d-block text-center fs-10 fw-bold">Write a brief description of a movie you would like to watch</p>
+    {%endif%}
+
+    </div>
+    <br/>
+    <br /> 
+    <br /> 
+</div>
+
+{% endblock content %}
